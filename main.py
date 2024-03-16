@@ -1,21 +1,16 @@
 import pandas as pd
 import numpy as np
+import tensorflow as tf
+from tensorflow.keras.preprocessing.text import Tokenizer
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from keras.models import Sequential
 from keras.layers import Dense, Embedding, LSTM, SpatialDropout1D
-from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
-from flask import Flask, render_template
+
 
 # Load data from CSV
 data = pd.read_csv('dataset.csv')
-
-app = Flask(__name__)
-
-@app.route('/')
-def home():
-    return render_template('login.html')
 
 # Preprocessing
 tokenizer = Tokenizer(num_words=5000, filters='!"#$%&()*+,-./:;<=>?@[\\]^_`{|}~\t\n', lower=True)
